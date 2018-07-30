@@ -16,3 +16,24 @@ gulp.task('sass2', function () {
     .pipe(sass())
     .pipe(gulp.dest('app/css'))
 })
+
+gulp.task('task', function () {
+  return gulp.src('')
+    .pipe(aGulpPlugin({
+      key: value,
+      key2: value2
+    }))
+    .pipe(aGulpPlugin(myGuplOptions))
+})
+
+var myGuplOptions = {
+  key: value,
+  key2: value2
+}
+
+// Gulp watch syntax
+gulp.watch('app/scss/**/*.scss', ['tasks', 'to', 'run'])
+
+gulp.task('watch', function(){
+  gulp.watch('app/scss/**/*.scss', ['scss'])
+})
