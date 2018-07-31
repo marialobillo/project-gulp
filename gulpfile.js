@@ -26,9 +26,10 @@ gulp.task('task', function () {
     .pipe(aGulpPlugin(myGuplOptions))
 })
 
+
 var myGuplOptions = {
-  key: value,
-  key2: value2
+  key: 'hello',
+  key2: 'hi'
 }
 
 // Gulp watch syntax
@@ -37,3 +38,17 @@ gulp.watch('app/scss/**/*.scss', ['tasks', 'to', 'run'])
 gulp.task('watch', function(){
   gulp.watch('app/scss/**/*.scss', ['scss'])
 })
+
+// handle errors
+gulp.task('sass3', function(){
+  return gulp.src('app/scss/**/*.scss')
+    .pipe(sass().on('error', errorHandler))
+    .pipe(gulp.dest('app/css'))
+})
+
+function errorHandler(err){
+  // Logs out error in the command line
+  console.log(err.toString());
+  // Ends the current pipe, so Gulp watch doesn't break
+  this.emit('end');
+}
